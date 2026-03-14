@@ -73,16 +73,21 @@ Option A — Use the Live Demo (Recommended)
 Step 1 — Data Pipeline
 
 All USDA datasets are merged into a single wide-format master table with one row per food and one column per nutrient. The recipe dataset is cleaned and ingredients are parsed into structured lists.
+
 Step 2 — Food Recognition (CLIP)
 
 CLIP encodes the uploaded image and 90+ food label prompts into a shared embedding space. Cosine similarity with temperature scaling identifies the best matching food label.
+
 Step 3 — Recipe Matching (FAISS RAG)
 
 All 50,000 recipe texts are encoded using all-MiniLM-L6-v2 and stored in a FAISS flat index. At query time, the food name is encoded and the top-K most semantically similar recipes are retrieved in milliseconds.
+
 Step 4 — Nutrition Q&A (Flan-T5)
 
 The identified food name, USDA nutrition data, and matched recipes are assembled into a structured prompt. Flan-T5 generates grounded, factual answers to any nutrition or recipe question.
+
 Results
+
 Metric 	Value
 Food categories supported 	90+
 USDA foods in database 	7,793
